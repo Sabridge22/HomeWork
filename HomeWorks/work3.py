@@ -42,7 +42,6 @@ def zigzag(): #функция для задачи "зигзаг"
                     y1 += 1
                     cnt +=1
                     myTable[x1-1][y1-1] = sl[cnt-1] #замена определенного символа
-                    
         for p in myTable: # создание таблицы
             print(' '.join(p))
         for i in myTable:

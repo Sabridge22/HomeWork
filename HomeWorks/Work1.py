@@ -7,19 +7,19 @@ def lenA(n): # функция находит длину числа
     return cnt
 
 def Left(n, ln): # функция находит первое число
-    n = n // (10 ** (ln - 1))
+    n = abs(n) // (10 ** (ln - 1))
     return n
 
 def Right(n): # функция находит последнее число
-    n = n % 10
+    n = abs(n) % 10
     return n
 
 def pos(n): # функция срезает последнее число
-    n = n // 10
+    n = abs(n) // 10
     return n
 
 def per(n, ln): # функция срезает первое число
-    n = n % (10 ** (ln-1))
+    n = abs(n) % (10 ** (ln-1))
     return n
 
 if __name__ == "__main__":

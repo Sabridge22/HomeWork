@@ -25,6 +25,5 @@ def perevorot(): # функция переворачивает число
         return itog
     else:
         return 'no solution'
-
 if __name__ == '__main__':
     print(perevorot())

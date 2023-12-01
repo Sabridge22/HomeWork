@@ -1,20 +1,10 @@
 def banki():
     kol = int(input('Введите кол-во банков: '))
-    # banks = []
-    # while kol > 0:
-    #     a = input('Введите название банка: ')
-    #     b = int(input('Введите кол-во денег в банке: '))
-    #     banks.append((a, b))
-    #     kol -= 1
-
     banks = []
-
-
     for _ in range(kol):
         name = input("Введите название банка: ")
         moneys = int(input("Введите деньги банка: "))
         banks.append(tuple([name,moneys]))
-
 
     money = []
     visited_index = []

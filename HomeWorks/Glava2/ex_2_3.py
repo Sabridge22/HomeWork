@@ -1,4 +1,4 @@
-def prov(a):
+def prov(a: str) -> bool:
     st = []
     for i in a:
         st.append(i)
@@ -25,7 +25,7 @@ def prov(a):
 
     return flag
 
-def vnut(a):
+def vnut(a: str) -> bool:
     fl = True
     for i in range(len(a) - 1):
         if (a[i] == '{') and ((a[i + 1] == ']') or (a[i + 1] == ')')): fl = False
@@ -34,7 +34,7 @@ def vnut(a):
     return fl
 
 
-def naib():
+def naib() -> None:
     a = str(input('Введите строку из скобок: '))
     if prov(a):
         return print(True)
@@ -44,7 +44,7 @@ def naib():
         ob = 0
         ku = 0
         sc = 0
- 
+
         for n in range(len(a)):
             mmm = ''
             for i in range(n, len(a)):
@@ -54,7 +54,7 @@ def naib():
                 elif a[i] == '}': ku -= 1
                 elif a[i] == '[': sc += 1
                 elif a[i] == ']': sc -= 1
-                
+
                 mmm += a[i]
 
                 if prov(mmm):

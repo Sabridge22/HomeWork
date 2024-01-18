@@ -1,4 +1,4 @@
-def banki():
+def banki() -> list[list[list[int, list[list[str, int]]]], None]:
     kol = int(input('Введите кол-во банков: '))
     banks = []
     for _ in range(kol):

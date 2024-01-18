@@ -1,6 +1,4 @@
-def mat(matrix):
-
-
+def mat(matrix: list[list[int]]) -> None:
 
     k = len(matrix[0])
     while len(matrix) < len(matrix[0]): # делаем матрицу "квадратом"

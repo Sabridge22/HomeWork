@@ -1,6 +1,6 @@
-def f(a):
+def f(a: list[str]) -> None:
     itog = []
-    
+
     i = 0
     lenght = len(a)
     while i < lenght:

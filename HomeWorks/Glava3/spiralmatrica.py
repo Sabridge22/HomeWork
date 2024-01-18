@@ -1,4 +1,4 @@
-def spiral_matrix(matrix):
+def spiral_matrix(matrix: list[list[int]]) -> None:
     result = []
     rows, cols = len(matrix), len(matrix[0])
     row_start, col_start = 0, 0

@@ -1,4 +1,4 @@
-def lenA(n): # функция находит длину числа 
+def lenA(n: int) -> int: # функция находит длину числа
     k = 1
     cnt = 0
     while k < n:
@@ -6,19 +6,19 @@ def lenA(n): # функция находит длину числа
         cnt += 1
     return cnt
 
-def Left(n, ln): # функция находит первое число
+def Left(n: int, ln: int) -> int: # функция находит первое число
     n = abs(n) // (10 ** (ln - 1))
     return n
 
-def Right(n): # функция находит последнее число
+def Right(n: int) -> int: # функция находит последнее число
     n = abs(n) % 10
     return n
 
-def pos(n): # функция срезает последнее число
+def pos(n: int) -> int: # функция срезает последнее число
     n = abs(n) // 10
     return n
 
-def per(n, ln): # функция срезает первое число
+def per(n: int, ln: int) -> int: # функция срезает первое число
     n = abs(n) % (10 ** (ln-1))
     return n
 

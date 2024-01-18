@@ -1,4 +1,5 @@
-def sum_of_num(num_list, S, start_sum, final_str, first_num): # функция для расстановки + и - для нахождения определенной суммы
+def sum_of_num(num_list: list[int], S: int, start_sum: int,
+                final_str: str, first_num: int) -> str: # функция для расстановки + и - для нахождения определенной суммы
     if len(num_list) == 0:
         if S == start_sum:
             return f'{first_num}{final_str}={S}' # делаем красивый ответ, добавляя первое число и финальную сумму
@@ -17,7 +18,7 @@ def sum_of_num(num_list, S, start_sum, final_str, first_num): # функция �
 
 if __name__ == "__main__":
 
-    stroka = open('D:/DzPoPitonu/Laboratory/chisla_for_1lab.txt').readline().split() # открытие файла
+    stroka = open('D:/DzPoPitonu/HomeWork/Laboratory/chisla_for_1lab.txt').readline().split() # открытие файла
 
     N = int(stroka.pop(0))
     S = int(stroka.pop(-1))

@@ -1,20 +1,13 @@
-def f(list1: list[int], list2: list[int]) -> tuple[list[int], list[int], list[int], list[int]]:
-    res1, res2 = [], []
-    res3 = list1.copy()
-    res4 = list2.copy()
+def f(list1: list[int], list2: list[int]) -> tuple[list[int], list[int], list[int], list[int]]: # ф-ция для сравнения 2-х списков
+    set1 = set(list1)
+    set2 = set(list2)
 
-    for i in list1:
-        if i in list2:
-            res1.append(i)
-            res3.remove(i)
-        else:
-            res2.append(i)
-
-    for j in list2:
-        if j in list1:
-            res4.remove(j)
-        else:
-            res2.append(j)
+    union_elements = set1.intersection(set2)
+    # делаем через 3 for, чтобы сложность была линейной
+    res1 = list(union_elements)
+    res2 = [x for x in list1 + list2 if x not in union_elements]
+    res3 = [x for x in list1 if x not in union_elements]
+    res4 = [x for x in list2 if x not in union_elements]
 
     return res1, res2, res3, res4
 

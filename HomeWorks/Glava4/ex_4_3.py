@@ -1,13 +1,17 @@
-def f(a: list[str]) -> None:
-    result = []
-    for i in range(len(a)):
-        result.append([a[i]])
-        for n in range(i + 1, len(a)):
-            if sorted(a[n]) == sorted(a[i]):
-                result[i].append(a[n])
+def group_anagrams(words: list[str]) -> None:
+    groups = {}
 
+    for word in words:
+        sorted_word_key = tuple(sorted(word))
+        if sorted_word_key in groups:
+            groups[sorted_word_key].append(word)
+        else:
+            groups[sorted_word_key] = [word]
+
+    result = list(groups.values())
     print(result)
 
+
 if __name__ == "__main__":
-    a = ['qwe', 'ewq', 'asd', 'dsa', 'dsas', 'qwee', 'zxc', 'cxz', 'xxz', 'z', 's', 'qweasdzxc', 'zzxc']
-    f(a)
+    words = ['qwe', 'ewq', 'asd', 'dsa', 'dsas', 'qwee', 'zxc', 'cxz', 'xxz', 'z', 's', 'qweasdzxc', 'zzxc']
+    group_anagrams(words)

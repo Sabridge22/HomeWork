@@ -1,22 +1,30 @@
-def pribliz_sum(N: int, spi: list[int], C: int) -> list[str, tuple[list[int], int]]: # функция, которая находит ближайшую сумму 4-х чисел к определенному числу
-    best = None
-    best_spis = None
-    if N <= 4: return 'no solution'
-    for i in range(N):
-        for j in range(i+1, N):
-            for k in range(j+1, N):
-                for l in range(k+1, N):
-                    pri = spi[i] + spi[j] + spi[k] + spi[l]
-                    if best == None: best = pri
-                    if best_spis == None: best_spis = [spi[i], spi[j], spi[k], spi[l]]
-                    if pri == C:
-                        return [spi[i], spi[j], spi[k], spi[l]], pri
+def pribliz_sum(N: int, spi: list[int], C: int) -> list[str, tuple[list[int], int]]:
+    if N <= 4:
+        return 'no solution'
 
-                    else:
-                        if abs(C - best) > abs(C - pri):
-                            best = pri
-                            best_spis = [spi[i], spi[j], spi[k], spi[l]]
-    return best, best_spis
+    spi.sort()
+    best_diff = float('inf') # создание положительной бесконечности(нашел в Интернете)
+    best_spis = None
+
+    for i in range(N - 3): # задается таким образом, чтобы осталось 3 свободных "слота"
+        for j in range(i + 1, N - 2): # задается так, чтобы была после i и оставалось 2 свободных "слота"
+            left = j + 1 # идет после j
+            right = N - 1 # всегда последняя буква(индекс последей буквы)
+
+            while left < right:
+                current_sum = spi[i] + spi[j] + spi[left] + spi[right]
+                current_diff = abs(C - current_sum)
+
+                if current_diff < best_diff:
+                    best_diff = current_diff
+                    best_spis = [spi[i], spi[j], spi[left], spi[right]]
+
+                if current_sum < C:
+                    left += 1
+                else:
+                    right -= 1
+
+    return sum(best_spis), best_spis
 
 if __name__ == '__main__':
     N = 5

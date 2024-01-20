@@ -1,19 +1,22 @@
-def naib() -> None: # ф-ция для опр. наибольшей строки без повторных символов
+def naib() -> None:
     a = input('Введите строку: ')
-    cnt = a[0]
-    itog = cnt
-    for i in range(len(a)-1):
-        cnt = a[i]
-        st = i
 
-        while a[st] != a[st + 1] and (a[st + 1] not in cnt):
-            cnt += a[st + 1]
-            st += 1
-            if len(cnt) > len(itog):
-                itog = cnt
-            if st >= len(a)-1:
-                break
-    print(itog)
+    left = 0
+    right = 0
+    max_len = 0
+
+    glass = {}
+
+    while right < len(a):
+        if a[right] not in glass or glass[a[right]] < left:
+            glass[a[right]] = right
+            right += 1
+        else:
+            left = glass[a[right]] + 1
+
+        max_len = max(max_len, right - left)
+
+    print(a[left:left + max_len])
 
 if __name__ == "__main__":
     naib()

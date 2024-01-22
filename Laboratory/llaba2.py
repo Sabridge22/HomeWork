@@ -41,9 +41,9 @@ def print_board(matrix: list[list[str]]):
     for row in matrix:
         print(" ".join(row))
 
-def recursion_for_all_arrangements(N: int, L: int, solutions: set[tuple[int, int]], solution: list[tuple[int, int]], cnt: int):
+def recursion_for_all_arrangements(N: int, L: int, solutions: set[tuple[int, int]], solution: set[tuple[int, int]], cnt: int, last_x: int, last_y: int):
     if cnt == L:
-        unique_solution = tuple(sorted(solution))
+        unique_solution = tuple(solution)
         solutions.add(unique_solution)
 
         # Вывод первого решения
@@ -51,27 +51,31 @@ def recursion_for_all_arrangements(N: int, L: int, solutions: set[tuple[int, int
             print("First solution:")
             print_board(create_board(matrx_builder(N), unique_solution))
         return
-
-    for i in range(N):
-        for j in range(N):
+    # (last_x, last_y) - координаты последней поставленной фигуры
+    for i in range(last_x, N):
+        if i == last_x: # если на этой строке уже поставлена фигура, то проход идет начиная с координат последней фигуры
+            start_y = last_y
+        else: # иначе будет проход всей строки с начала
+            start_y = 0
+        for j in range(start_y, N):
             if (i, j) not in solution and not piece_moves(i, j).intersection(solution):
-                solution.append((i, j))
-                recursion_for_all_arrangements(N, L, solutions, solution, cnt + 1)
-                solution.pop()
+                solution.add((i, j))
+                recursion_for_all_arrangements(N, L, solutions, solution, cnt + 1, i, j)
+                solution.remove((i, j))
 
 if __name__ == "__main__":
     file = open("D:/DzPoPitonu/HomeWork/Laboratory/input.txt", "r")
     N, L, K = map(int, file.readline().split())
 
-    posed_figures = []
+    posed_figures = set()
     solutions = set()
 
     for line in file.readlines():
         x, y = map(int, line.split())
-        posed_figures.append((x, y))
+        posed_figures.add((x, y))
     file.close()
 
-    recursion_for_all_arrangements(N, L, solutions, posed_figures, 0)
+    recursion_for_all_arrangements(N, L, solutions, posed_figures, 0, 0, 0)
 
     print(f"Number of solutions: {len(solutions)}")
 

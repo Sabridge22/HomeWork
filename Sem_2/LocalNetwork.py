@@ -3,47 +3,49 @@ class Data:
         self.data = data
         self.ip = ip
 
-    data = ""
-    ip = 0
-
-
 class Server:
     ip = 0
     IP = 0
 
-    def __new__(cls, *args, **kwargs):
+    def __new__(cls, *args, **kwargs) -> None:
         cls.IP += 1
         return super().__new__(cls)
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.ip = Server.IP
         self.buffer = []
+        self.router = None
 
-    def send_data(self, data: Data):
+    def send_data(self, data: Data) -> None:
         self.router.buffer.append(data)
+        self.buffer.clear()
 
-    def get_data(self):
-        return self.buffer
+    def get_data(self) -> list:
+        data = self.buffer.copy()
+        self.buffer.clear()
+        return data
 
-    def get_ip(self):
+    def get_ip(self) -> int:
         return self.ip
 
     buffer = []
-    router = []
+    router = None 
 
 
 class Router:
-    def link(self, server: Server):
+    def link(self, server: Server) -> None:
         self.servers.append(server)
-        server.router.append(self)
+        server.router = self
 
-    def unlink(self, server: Server):
+    def unlink(self, server: Server) -> None:
         if server in self.servers:
             self.servers.remove(server)
 
-    def send_data(self):
-        for i in self.servers:
-            i.buffer += self.buffer
+    def send_data(self) -> None:
+        for data in self.buffer:
+            for server in self.servers:
+                if server.get_ip() == data.ip:
+                    server.buffer.append(data)
         self.buffer.clear()
 
     servers = []

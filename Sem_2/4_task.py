@@ -29,7 +29,7 @@ class Server:
         return self.ip
 
     buffer = []
-    router = None 
+    router = None
 
 
 class Router:

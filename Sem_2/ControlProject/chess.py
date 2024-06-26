@@ -15,6 +15,7 @@ from PySide6.QtWidgets import (
 )
 from PySide6.QtCore import Qt
 
+
 class ChessLogic:
     @staticmethod
     def matrx_builder(N: int) -> list[list[str]]:  # создание доски

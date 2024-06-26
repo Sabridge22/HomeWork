@@ -159,8 +159,6 @@ class LinkMetro(Link):
 
 
 # проверка
-
-
 map2 = LinkedGraph()
 v1 = Vertex()
 v2 = Vertex()

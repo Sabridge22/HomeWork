@@ -130,7 +130,7 @@ class ChessLogic: # класс с логикой и проверкой пози�
         return board
 
 
-class InputDialog(QDialog): # Интерфейс. Ввод данных
+class InputDialog(QDialog): # Интерфейс. Ввод данных расставленных фигур
     def __init__(self, N: int, L: int, K: int):
         super().__init__()
         self.setWindowTitle("Ввод координат")
@@ -277,7 +277,7 @@ class InputDialog(QDialog): # Интерфейс. Ввод данных
                 file.write(line + "\n")
 
 
-class MainWindow(QMainWindow): # основное окно приложения
+class MainWindow(QMainWindow): # основное окно приложения, где вводятся размер доски и количество  фигур
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Расстановка фигур")

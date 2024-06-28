@@ -313,6 +313,14 @@ class SolutionDialog(QDialog):
         self.layout.addWidget(self.solutions_label)
 
         self.setLayout(self.layout)
+        self.write_solutions_to_file(solutions)
+
+    # запись решений в output.txt
+    def write_solutions_to_file(self, solutions):
+        with open("output.txt", "w") as file:
+            for solution in solutions:
+                line = " ".join(f"({x},{y})" for x, y in solution)
+                file.write(line + "\n")
 
 
 # класс основного окна приложения
